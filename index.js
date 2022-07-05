@@ -4,6 +4,7 @@ const express = require ('express'),
 const app = express();
 
 app.use (morgan('common'));
+
 let topMovies = [
   {
     Title: "Alien"
