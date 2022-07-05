@@ -1,31 +1,40 @@
 const express = require ('express'),
   morgan = require('morgan');
-  fs = require('fs'),
-  path = require('path');
 
 const app = express();
 
-const accessLogStream = fs.createWriteStream(path.join(__dirname, '/log.txt'), {flags: 'a'})
-
-app.use(morgan('combined', {stream, accessLogStream}));
-
+app.use (morgan('common'));
 let topMovies = [
   {
     Title: "Alien"
   },
   {
-    Title: "Lord of the Rings"
+    Title: "The Lord of the Rings"
   },
   {
     Title: "The Big Labowski"
   },
   {
+    Title: "Star Wars"
+  },
+  {
+    Title: "The Matrix"
+  },
+  {
+    Title: "Tinker, Tailor, Soldier, Spy"
+  },
+  {
     Title: "Airheads"
   },
   {
-    Title: "Star Wars"
+    Title: "Forest Gump"
+  },
+  {
+    Title: "Titanic"
+  },
+  {
+    Title: "UHF"
   }
-
 ];
 
 app.get('/', (req, res) => {
@@ -35,7 +44,7 @@ app.get('/', (req, res) => {
 app.use(express.static('public'));
 
 app.get('/movies', (req, res) => {
-  res.Json(topMovies);
+  res.json(topMovies);
 });
 
 app.use((err, req, res, next) => {
