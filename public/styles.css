@@ -17,3 +17,11 @@ p {
   text-align: center;
   color: var(--font-color);
 }
+
+tr {
+  color: beige;
+}
+
+td {
+  color: var(--font-color);
+}
