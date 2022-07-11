@@ -55,17 +55,17 @@ app.get('/movies/:title', (req, res) => {
 });
 
 //return info for specific genre
-app.get('/movies/:title/:genre', (res, res) => {
+app.get('/movies/:title/:genre', (req, res) => {
   res.send('successful GET response returning data about specific titles genre');
 });
 
 //return info on specific director
-app.get('/movies/:director', (req, res) => {
+app.get('/directors', (req, res) => {
   res.send('successful GET response returning data about a director');
 });
 
 //post data on new user
-app.post('/users/', (res, res) => {
+app.post('/users', (req, res) => {
   res.send('a JSON holding data of the user that was added including username, password, email, date of birth');
 });
 
@@ -75,12 +75,12 @@ app.put('/users/:username', (req, res) => {
 });
 
 //add movie to user's list of favorites
-app.put('/users/:favorites', (req, res) => {
+app.put('/favorites', (req, res) => {
   res.send('a message saying a movie has been added top their list of favorites');
 });
 
 //remove movie from user's list of favorites
-app.delete('/users/:favorites', (req, res) => {
+app.delete('/favorites', (req, res) => {
   res.send('a message saying a movie has been removed from their list of favorites');
 });
 
