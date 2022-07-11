@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="device=device-width, initial-scale=1">
@@ -7,20 +8,103 @@
     Martini Shot
   </title>
   <link rel="stylesheet" type="text/css" href="styles.css">
-  </head>
-  <body>
-    <header>
-      <h1>
-      Martini Shot
-      </h1>
-      </header>
-      <main>
-        <p>
-        In Dale's Movie App, "Martini Shot", named after the day's final shot on a film set, movie enthusiasts will be able to search through a database of movies loaded from an external database using a REST API I built myself. Users will be able to search for their favourite titles, actors, genre, directors and more. The App will be built from the ground up and will utilize the server, business logic layer and data layer. The app and API will be crafted using Javascript, Node.js, Express and MongoDB. Martini Shot will be hosted online for movie lovers to search the database anytime they would like to read about their favourite actors, favourite directors, anything movie related. Once a user has registered, they will be able to create their own profile to save any "favourites" or "must watch" movies to a list they can edit as they please. Movies are a huge part of our culture and can make us feel happy, contemplative, melancholy, afraid or they can take us to a galaxy far far away. This app is for anyone who enjoys knowing more about what's on the screen.
-        </p>
-        </main>
-        <footer>
-          </footer>
+</head>
 
-    </body>
+<body>
+  <header>
+    <h1>
+      Martini Shot
+    </h1>
+  </header>
+  <main>
+    <p>
+      In Dale's Movie App, "Martini Shot", named after the day's final shot on a film set, movie enthusiasts will be
+      able to search through a database of movies loaded from an external database using a REST API I built myself.
+      Users will be able to search for their favourite titles, actors, genre, directors and more. The App will be built
+      from the ground up and will utilize the server, business logic layer and data layer. The app and API will be
+      crafted using Javascript, Node.js, Express and MongoDB. Martini Shot will be hosted online for movie lovers to
+      search the database anytime they would like to read about their favourite actors, favourite directors, anything
+      movie related. Once a user has registered, they will be able to create their own profile to save any "favourites"
+      or "must watch" movies to a list they can edit as they please. Movies are a huge part of our culture and can make
+      us feel happy, contemplative, melancholy, afraid or they can take us to a galaxy far far away. This app is for
+      anyone who enjoys knowing more about what's on the screen.
+    </p>
+    <table>
+      <tr>
+        <th>Description</th>
+        <th>URL</th>
+        <th>HTTP method</th>
+        <th>Request</th>
+        <th>Response</th>
+      </tr>
+      <tr>
+        <td>Return list of all movies</td>
+        <td>/movies</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>A JSON object with all movies in database</td>
+      </tr>
+      <tr>
+        <td>Return specific data of a single movie</td>
+        <td>/movies/:title</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>A JSON object holding movie description, genre, director, image, etc.</td>
+      </tr>
+      <tr>
+        <td>Return data about a genre by title</td>
+        <td>/movies/:title/:genre</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>A JSON object showing the genre description of a chosen title</td>
+      </tr>
+      <tr>
+        <td>Return data about a director</td>
+        <td>/movies/:director</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>A JSON object holding information about a chosen director</td>
+      </tr>
+      <tr>
+        <td>User registration</td>
+        <td>/users</td>
+        <td>POST</td>
+        <td>A JSON holding user data to be registered including name, password, email, date of birth including a unique ID</td>
+        <td>A JSON holding user data to be registered including name, password, email, date of birth</td>
+      </tr>
+      <tr>
+        <td>Updating username</td>
+        <td>/users/:username</td>
+        <td>PUT</td>
+        <td>none</td>
+        <td>A message saying their username has been updated</td>
+      </tr>
+      <tr>
+        <td>Add movie to user's list of favourites</td>
+        <td>/users/:favorites</td>
+        <td>PUT</td>
+        <td>none</td>
+        <td>A message saying a movie has been added to their list of favorites</td>
+      </tr>
+      <tr>
+        <td>Remove movie from user's list of favorites</td>
+        <td>/users/:favorites</td>
+        <td>DELETE</td>
+        <td>none</td>
+        <td>A message saying a movie has been removed from their loist of favorites</td>
+      </tr>
+      <tr>
+        <td>User de-registration</td>
+        <td>/users</td>
+        <td>DELETE</td>
+        <td>none</td>
+        <td>A message saying the user's email has been removed</td>
+      </tr>
+    </table>
+  </main>
+  <footer>
+  </footer>
+
+</body>
+
 </html>
