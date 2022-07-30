@@ -42,60 +42,73 @@
         <td>/movies</td>
         <td>GET</td>
         <td>none</td>
-        <td>A JSON object with all movies in database</td>
+        <td>A JSON object with all movies in database<br>
+        </td>
       </tr>
       <tr>
-        <td>Return specific data of a single movie</td>
+        <td>Return data of a single movie</td>
         <td>/movies/:title</td>
         <td>GET</td>
         <td>none</td>
-        <td>A JSON object holding movie description, genre, director, image, etc.</td>
+        <td>A JSON object holding movie title, description, genre, director, image and ID number</td>
       </tr>
       <tr>
-        <td>Return data about a genre by title</td>
-        <td>/movies/:title/:genre</td>
+        <td>Return data about a genre by genre name</td>
+        <td>/movies/:title/:genreName</td>
         <td>GET</td>
         <td>none</td>
         <td>A JSON object showing the genre description of a chosen title</td>
       </tr>
       <tr>
-        <td>Return data about a director</td>
-        <td>/movies/:director</td>
+        <td>Return data about a director by name</td>
+        <td>/movies/directors/:directorName</td>
         <td>GET</td>
         <td>none</td>
-        <td>A JSON object holding information about a chosen director</td>
+        <td>A JSON object holding information about a chosen director including </td>
       </tr>
       <tr>
         <td>User registration</td>
         <td>/users</td>
         <td>POST</td>
-        <td>A JSON holding user data to be registered including name, password, email, date of birth including a unique ID</td>
-        <td>A JSON holding user data to be registered including name, password, email, date of birth</td>
+        <td>{"Username": "###",
+          "Password": "###",
+          "Email": "###@$$$.com",
+          "Birthday": "Y###-M#-D#"}</td>
+        <td>A JSON holding user data to be registered including name, password, email, date of birth including a unique ID<br>
+          {
+            "_id": "62e48911d215de081e36a669",
+            "Username": "DanielJohns",
+            "Password": "anthem2000",
+            "Email": "onewaymule@gmail.com",
+            "Birthday": "1979-04-22T00:00:00.000Z",
+            "FavoriteMovies": [],
+            "__v": 0
+        }</td>
       </tr>
       <tr>
-        <td>Updating username</td>
-        <td>/users/:username</td>
+        <td>Updating user info</td>
+        <td>/Users/:Username</td>
         <td>PUT</td>
         <td>none</td>
         <td>A message saying their username has been updated</td>
       </tr>
       <tr>
         <td>Add movie to user's list of favourites</td>
-        <td>/users/:favorites</td>
+        <td>/users/:Username/movies/:MovieID</td>
         <td>PUT</td>
         <td>none</td>
         <td>A message saying a movie has been added to their list of favorites</td>
       </tr>
       <tr>
         <td>Remove movie from user's list of favorites</td>
-        <td>/users/:favorites</td>
+        <td>/users/:Username/movies/:MovieID</td>
         <td>DELETE</td>
         <td>none</td>
         <td>A message saying a movie has been removed from their loist of favorites</td>
       </tr>
       <tr>
         <td>User de-registration</td>
-        <td>/users</td>
+        <td>/users/:Username</td>
         <td>DELETE</td>
         <td>none</td>
         <td>A message saying the user's email has been removed</td>
