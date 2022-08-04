@@ -9,7 +9,9 @@ const app = express();
 const bcrypt = require('bcrypt');
 const { check, validationResult } = require('express-validatpr');
 
-mongoose.connect('mongodb://localhost:27017/martinishot', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect('mongodb://localhost:27017/martinishot', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('process.env,CONNECTION.URI', { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
