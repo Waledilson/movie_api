@@ -7,7 +7,7 @@ const express = require('express'),
   morgan = require('morgan');
 const app = express();
 const bcrypt = require('bcrypt');
-const { check, validationResult } = require('express-validatpr');
+const { check, validationResult } = require('express-validator');
 
 //mongoose.connect('mongodb://localhost:27017/martinishot', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect( process.env.CONNECTION.URI, { useNewUrlParser: true, useUnifiedTopology: true });
