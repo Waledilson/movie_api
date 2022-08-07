@@ -95,7 +95,7 @@ check('Username', 'Username contains non alphanumeric characters - not allowed.'
 check('Password', 'Password is required').not().isEmpty(),
 check('Email', 'Email does not appear to be valid').isEmail()
 ], (req, res) => {
-  let error = validationResult(req);
+  let errors = validationResult(req);
   if(!errors.isEmpty()) {
     return res.status(422).json({errors: errors.array()});
   }
