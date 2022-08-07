@@ -88,7 +88,6 @@ app.get('/movies/directors/:directorName', passport.authenticate('jwt', {session
   });
 });
 
-
 //post data on new user
 app.post('/users', [
 check('Username', 'Username is required').isLength({min: 5}),
