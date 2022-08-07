@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use (morgan('common'));
 
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080'];
+let allowedOrigins = ['http://localhost:8080', 'https://intense-shore-03094.herokuapp.com/'];
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
