@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const express = require('express'),
   morgan = require('morgan');
 const app = express();
-//const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const { check, validationResult } = require('express-validator');
 
 //mongoose.connect('mongodb://localhost:27017/martinishot', { useNewUrlParser: true, useUnifiedTopology: true });
