@@ -172,7 +172,12 @@ check('Email', 'Email does not appear to be valid').isEmail()
 });
 
 //add movie to user's list of favorites (post)
-app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {session: false }), (req, res) => {
+app.post('/users/:Username/movies/:MovieID', [
+  check('MovieID', 'MovieID is required').not().isEmpty(),
+  ], passport.authenticate('jwt', {session: false }), (req, res) => {
+    let errors = validationResult(req);
+    if(!errors.isEmpty()) {
+      return res.status(422).json({errors: errors.array()})};
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $push: { FavoriteMovies: req.params.MovieID }
   },
