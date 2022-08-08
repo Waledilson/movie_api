@@ -1,17 +1,13 @@
-const mongoose = require('mongoose');
-const Models = require('./models.js');
-const Movies = Models.Movie;
-const Users = Models.User;
-const bodyParser = require('body-parser');
-const express = require('express'),
-  fs = require('fs'),
-  path = require('path'),
-  morgan = require('morgan'),
-  uuid = require('uuid');
-const app = express();
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
-const bcrypt = require('bcrypt');
-const { check, validationResult } = require('express-validator');
+const mongoose = require('mongoose'),
+ Models = require('./models.js'),
+ Movies = Models.Movie,
+ Users = Models.User,
+ bodyParser = require('body-parser'),
+ express = require('express'),
+ app = express(),
+ morgan = require('morgan'),
+ bcrypt = require('bcrypt'),
+ { check, validationResult } = require('express-validator');
 
 //mongoose.connect('mongodb://localhost:27017/martinishot', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -33,7 +29,7 @@ app.use(cors({
   }
   }));
 
-let auth = require('./auth')(app);
+require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
@@ -48,7 +44,7 @@ app.use(express.static('public'));
 app.get('/movies', passport.authenticate('jwt', {session: false }), (req, res) => {
   Movies.find()
   .then((movies) => {
-    res.status(201).json(movies);
+    res.json(movies);
   })
   .catch((err) => {
     console.error(err);
@@ -112,7 +108,7 @@ check('Email', 'Email does not appear to be valid').isEmail()
       Users
       .create({
         Username: req.body.Username,
-        Password: req.body.Password,
+        Password: hashedPassword,
         Email: req.body.Email,
         Birthday: req.body.Birthday
       })
@@ -133,7 +129,7 @@ check('Email', 'Email does not appear to be valid').isEmail()
 app.get('/users', passport.authenticate('jwt', {session: false }), (req, res) => {
   Users.find()
   .then((users) => {
-    res.status(201).json(users);
+    res.json(users);
   })
   .catch((err) => {
     console.error(err);
@@ -155,7 +151,7 @@ check('Email', 'Email does not appear to be valid').isEmail()
     { $set:
     {
       Username: req.body.Username,
-      Password: req.body.Password,
+      Password: hashedPassword,
       Email: req.body.Email,
       Birthday: req.body.Birthday
     }
