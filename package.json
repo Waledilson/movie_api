@@ -39,6 +39,7 @@
     "@types/passport": "^1.0.9",
     "@types/passport-jwt": "^3.0.6",
     "@types/passport-local": "^1.0.34",
+    "@types/uuid": "^8.3.4",
     "eslint": "^8.18.0"
   },
   "description": ""
