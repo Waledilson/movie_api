@@ -9,6 +9,7 @@ const express = require('express'),
   morgan = require('morgan'),
   uuid = require('uuid');
 const app = express();
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 const bcrypt = require('bcrypt');
 const { check, validationResult } = require('express-validator');
 
