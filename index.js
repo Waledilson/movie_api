@@ -18,7 +18,7 @@ app.use(morgan('common'));
 
 const cors = require('cors');
 app.use(cors());
-let allowedOrigins = ['http://localhost:8080', 'https://intense-shore-03094.herokuapp.com/', 'http://localhost:1234'];
+let allowedOrigins = ['https://ibb.co', 'http://localhost:8080', 'https://intense-shore-03094.herokuapp.com/', 'http://localhost:1234'];
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
