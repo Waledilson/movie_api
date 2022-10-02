@@ -171,13 +171,7 @@ app.put('/users/:Username', [
 });
 
 //add movie to user's list of favorites (post)
-app.post('/users/:Username/movies/:MovieID', [
-  check('MovieID', 'MovieID is required').not().isEmpty(),
-], passport.authenticate('jwt', { session: false }), (req, res) => {
-  let errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() })
-  };
+app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $push: { FavoriteMovies: req.params.MovieID }
   },
