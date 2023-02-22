@@ -26,6 +26,7 @@ let allowedOrigins = [
   "http://localhost:8080",
   "https://intense-shore-03094.herokuapp.com/",
   "http://localhost:1234",
+  "https://movieapi-production-1d07.up.railway.app",
 ];
 app.use(
   cors({
