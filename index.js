@@ -28,6 +28,7 @@ let allowedOrigins = [
   "http://localhost:1234",
   "https://movieapi-production-1d07.up.railway.app",
   "http://localhost:4200",
+  "https://waledilson.github.io/",
 ];
 app.use(
   cors({
