@@ -30,6 +30,7 @@ let allowedOrigins = [
   "http://localhost:4200",
   "https://waledilson.github.io/myFlix-Angular-client",
   "https://waledilson.github.io/",
+  "https://waledilson.github.io/myFlix-Angular-client/",
 ];
 app.use(
   cors({
