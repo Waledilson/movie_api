@@ -103,7 +103,8 @@ app.get(
  * @service GET genre info
  * @param genreName
  * @returns name and description of genre in json
- */ app.get(
+ */
+app.get(
   "/movies/genres/:genreName",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
@@ -122,7 +123,8 @@ app.get(
  * @service GET director info
  * @param directorName
  * @returns name, birth year and bio of director in json
- */ app.get(
+ */
+app.get(
   "/movies/directors/:directorName",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
@@ -141,7 +143,8 @@ app.get(
  * @service POST to the endpoint to register new user
  * @returns a new user object in json
  * @param Username
- */ app.post(
+ */
+app.post(
   "/users",
   [
     check("Username", "Username is required").isLength({ min: 5 }),
