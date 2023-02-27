@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("common"));
 
+//list of allowed-origins
 const cors = require("cors");
 app.use(cors());
 let allowedOrigins = [
@@ -58,7 +59,10 @@ app.get("/", (req, res) => {
 
 app.use(express.static("public"));
 
-//return all movies
+/**
+ * @service GET all movies in database
+ * @returns all movie info arrays in json
+ */
 app.get(
   "/movies",
   passport.authenticate("jwt", { session: false }),
@@ -74,7 +78,11 @@ app.get(
   }
 );
 
-//return info for specific title
+/**
+ * @service GET single movie
+ * @param title
+ * @returns single movie info in json
+ */
 app.get(
   "/movies/:title",
   passport.authenticate("jwt", { session: false }),
@@ -90,8 +98,11 @@ app.get(
   }
 );
 
-//return info for specific genre
-app.get(
+/**
+ * @service GET genre info
+ * @param genreName
+ * @returns name and description of genre in json
+ */ app.get(
   "/movies/genres/:genreName",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
@@ -106,8 +117,11 @@ app.get(
   }
 );
 
-//return info on specific director
-app.get(
+/**
+ * @service GET director info
+ * @param directorName
+ * @returns name, birth year and bio of director in json
+ */ app.get(
   "/movies/directors/:directorName",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
@@ -122,8 +136,11 @@ app.get(
   }
 );
 
-//post data on new user
-app.post(
+/**
+ * @service POST to the endpoint to register new user
+ * @returns a new user object in json
+ * @param Username
+ */ app.post(
   "/users",
   [
     check("Username", "Username is required").isLength({ min: 5 }),
@@ -167,7 +184,10 @@ app.post(
   }
 );
 
-//get all users
+/**
+ * @service GET all users
+ * @returns all users registered
+ */
 app.get(
   "/users",
   passport.authenticate("jwt", { session: false }),
@@ -183,7 +203,11 @@ app.get(
   }
 );
 
-//update user data
+/**
+ * @service PUT newly updated info of logged-in user
+ * @param updatedUser
+ * @returns updated user information
+ */
 app.put(
   "/users/:Username",
   [
@@ -225,7 +249,11 @@ app.put(
   }
 );
 
-//add movie to user's list of favorites (post)
+/**
+ * @service POST specific movie to user's list of favorite movies
+ * @param MovieId
+ * @returns updated array of user's favorite movies in json
+ */
 app.post(
   "/users/:Username/movies/:MovieID",
   passport.authenticate("jwt", { session: false }),
@@ -248,7 +276,11 @@ app.post(
   }
 );
 
-//remove movie from user's list of favorites
+/**
+ * @service DELETE specific movie from user's list of favorite movies
+ * @param MovieId
+ * @returns updated array of user's favorite movies in json
+ */
 app.delete(
   "/users/:Username/movies/:MovieID",
   passport.authenticate("jwt", { session: false }),
@@ -271,7 +303,10 @@ app.delete(
   }
 );
 
-//get info for specific user by Username
+/**
+ * @service GET user info
+ * @returns name, password, email and date of birth of requested user in json
+ */
 app.get(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
@@ -287,7 +322,10 @@ app.get(
   }
 );
 
-//delete user by username
+/**
+ * @service DELETE user from database
+ * @returns nothing
+ */
 app.delete(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
