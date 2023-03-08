@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/Waledilson/movie_api/issues"
   },
-  "homepage": "https://github.com/Waledilson/movie_api#readme",
+  "homepage": "https://github.com/Waledilson/movie_api",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
