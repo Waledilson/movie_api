@@ -33,6 +33,7 @@ let allowedOrigins = [
   "https://waledilson.github.io/",
   "https://waledilson.github.io/myFlix-Angular-client/",
   "https://waledilson.github.io/movie_api-client/",
+  "https://martini-shot-react.netlify.app/",
 ];
 app.use(
   cors({
