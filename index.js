@@ -35,7 +35,7 @@ let allowedOrigins = [
   "https://waledilson.github.io/movie_api-client/",
   "https://martini-shot-react.netlify.app/",
   "https://martini-shot-react.netlify.app",
-  "https://64efe4fc59547b0cfa3c6301--martini-shot-react.netlify.app'",
+  "https://64efe4fc59547b0cfa3c6301--martini-shot-react.netlify.app/",
 ];
 app.use(
   cors({
