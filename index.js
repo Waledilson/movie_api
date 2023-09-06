@@ -23,34 +23,34 @@ app.use(morgan("common"));
 //list of allowed-origins
 const cors = require("cors");
 app.use(cors());
-let allowedOrigins = [
-  "http://localhost:8080",
-  "https://intense-shore-03094.herokuapp.com/",
-  "http://localhost:1234",
-  "https://movieapi-production-1d07.up.railway.app",
-  "http://localhost:4200",
-  "https://waledilson.github.io/myFlix-Angular-client",
-  "https://waledilson.github.io/",
-  "https://waledilson.github.io/myFlix-Angular-client/",
-  "https://waledilson.github.io/movie_api-client/",
-  "https://martini-shot-react.netlify.app/",
-  "https://martini-shot-react.netlify.app",
-  "https://64efe4fc59547b0cfa3c6301--martini-shot-react.netlify.app/",
-];
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        let message =
-          "The CORS policy for this application doesn't allow access from origin " +
-          origin;
-        return callback(new Error(message), false);
-      }
-      return callback(null, true);
-    },
-  })
-);
+// let allowedOrigins = [
+//   "http://localhost:8080",
+//   "https://intense-shore-03094.herokuapp.com/",
+//   "http://localhost:1234",
+//   "https://movieapi-production-1d07.up.railway.app",
+//   "http://localhost:4200",
+//   "https://waledilson.github.io/myFlix-Angular-client",
+//   "https://waledilson.github.io/",
+//   "https://waledilson.github.io/myFlix-Angular-client/",
+//   "https://waledilson.github.io/movie_api-client/",
+//   "https://martini-shot-react.netlify.app/",
+//   "https://martini-shot-react.netlify.app",
+//   "https://64efe4fc59547b0cfa3c6301--martini-shot-react.netlify.app/",
+// ];
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin) return callback(null, true);
+//       if (allowedOrigins.indexOf(origin) === -1) {
+//         let message =
+//           "The CORS policy for this application doesn't allow access from origin " +
+//           origin;
+//         return callback(new Error(message), false);
+//       }
+//       return callback(null, true);
+//     },
+//   })
+// );
 
 require("./auth")(app);
 const passport = require("passport");
