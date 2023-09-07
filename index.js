@@ -22,7 +22,7 @@ app.use(morgan("common"));
 
 //list of allowed-origins
 const cors = require("cors");
-app.use(cors());
+app.use(cors({ origin: true }));
 // let allowedOrigins = [
 //   "http://localhost:8080",
 //   "https://intense-shore-03094.herokuapp.com/",
