@@ -43,7 +43,7 @@ let allowedOrigins = [
   "https://martini-shot-react.netlify.app/",
   "https://martini-shot-react.netlify.app",
   "https://64efe4fc59547b0cfa3c6301--martini-shot-react.netlify.app/",
-  "https://chimerical-tarsier-543164.netlify.app",
+  "https://chimerical-tarsier-543164.netlify.app/",
 ];
 app.use(
   cors({
