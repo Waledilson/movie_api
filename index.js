@@ -14,14 +14,14 @@ const mongoose = require("mongoose"),
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 // });
-// mongoose.connect(process.env.CONNECTION_URI, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-mongoose.connect("mongodb://localhost:8080", {
+mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+// mongoose.connect("mongodb://localhost:8080", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
