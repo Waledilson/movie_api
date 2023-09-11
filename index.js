@@ -10,18 +10,18 @@ const mongoose = require("mongoose"),
   bcrypt = require("bcrypt"),
   { check, validationResult } = require("express-validator");
 
-mongoose.connect("mongodb://localhost:27017/martinishot", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect("mongodb://localhost:27017/martinishot", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 // mongoose.connect(process.env.CONNECTION_URI, {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 // });
-// mongoose.connect("mongodb://localhost:8080", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
+mongoose.connect("mongodb://localhost:8080", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
