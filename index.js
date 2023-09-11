@@ -10,14 +10,18 @@ const mongoose = require("mongoose"),
   bcrypt = require("bcrypt"),
   { check, validationResult } = require("express-validator");
 
-// mongoose.connect("mongodb://localhost:27017/martinishot", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-mongoose.connect(process.env.CONNECTION_URI, {
+mongoose.connect("mongodb://localhost:27017/martinishot", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+// mongoose.connect(process.env.CONNECTION_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+// mongoose.connect("mongodb://localhost:8080", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,20 +30,20 @@ app.use(morgan("common"));
 //list of allowed-origins
 const cors = require("cors");
 app.use(cors({ origin: true }));
-let allowedOrigins = [
-  "http://localhost:8080",
-  "https://intense-shore-03094.herokuapp.com/",
-  "http://localhost:1234",
-  "https://movieapi-production-1d07.up.railway.app",
-  "http://localhost:4200",
-  "https://waledilson.github.io/myFlix-Angular-client",
-  "https://waledilson.github.io/",
-  "https://waledilson.github.io/myFlix-Angular-client/",
-  "https://waledilson.github.io/movie_api-client/",
-  "https://martini-shot-react.netlify.app/",
-  "https://martini-shot-react.netlify.app",
-  "https://64efe4fc59547b0cfa3c6301--martini-shot-react.netlify.app/",
-];
+// let allowedOrigins = [
+//   "http://localhost:8080",
+//   "https://intense-shore-03094.herokuapp.com/",
+//   "http://localhost:1234",
+//   "https://movieapi-production-1d07.up.railway.app",
+//   "http://localhost:4200",
+//   "https://waledilson.github.io/myFlix-Angular-client",
+//   "https://waledilson.github.io/",
+//   "https://waledilson.github.io/myFlix-Angular-client/",
+//   "https://waledilson.github.io/movie_api-client/",
+//   "https://martini-shot-react.netlify.app/",
+//   "https://martini-shot-react.netlify.app",
+//   "https://64efe4fc59547b0cfa3c6301--martini-shot-react.netlify.app/",
+// ];
 app.use(
   cors({
     origin: (origin, callback) => {
