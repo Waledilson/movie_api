@@ -32,7 +32,6 @@ const cors = require("cors");
 app.use(cors({ origin: true }));
 let allowedOrigins = [
   "http://localhost:8080",
-  "https://intense-shore-03094.herokuapp.com/",
   "http://localhost:1234",
   "https://movieapi-production-1d07.up.railway.app",
   "http://localhost:4200",
@@ -40,12 +39,7 @@ let allowedOrigins = [
   "https://waledilson.github.io/",
   "https://waledilson.github.io/myFlix-Angular-client/",
   "https://waledilson.github.io/movie_api-client/",
-  "https://martini-shot-react.netlify.app/",
-  "https://martini-shot-react.netlify.app",
-  "https://64efe4fc59547b0cfa3c6301--martini-shot-react.netlify.app/",
-  "https://chimerical-tarsier-543164.netlify.app/",
-  "https://marvelous-sundae-b7591f.netlify.app",
-  "https://teal-piroshki-fe95ae.netlify.app",
+  "https://martinishot.netlify.app/",
 ];
 app.use(
   cors({
