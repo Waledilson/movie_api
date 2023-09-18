@@ -40,7 +40,7 @@ let allowedOrigins = [
   "https://waledilson.github.io/myFlix-Angular-client/",
   "https://waledilson.github.io/movie_api-client/",
   "https://martinishot.netlify.app",
-  "https://main--martinishot.netlify.app",
+  "https://main--martinishot.netlify.app/",
 ];
 app.use(
   cors({
