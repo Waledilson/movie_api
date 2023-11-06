@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config()
 const mongoose = require("mongoose"),
   Models = require("./models.js"),
   Movies = Models.Movie,
@@ -8,24 +8,24 @@ const mongoose = require("mongoose"),
   app = express(),
   morgan = require("morgan"),
   bcrypt = require("bcrypt"),
-  { check, validationResult } = require("express-validator");
+  { check, validationResult } = require("express-validator")
 
-mongoose.connect("mongodb://localhost:27017/martinishot", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-// mongoose.connect(process.env.CONNECTION_URI, {
+// mongoose.connect("mongodb://localhost:27017/martinishot", {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 // });
+mongoose.connect(process.env.CONNECTION_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan("common"));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(morgan("common"))
 
 //list of allowed-origins
-const cors = require("cors");
-app.use(cors({ origin: true }));
+const cors = require("cors")
+app.use(cors({ origin: true }))
 // let allowedOrigins = [
 //   "http://localhost:8080",
 //   "https://intense-shore-03094.herokuapp.com/",
@@ -55,16 +55,16 @@ app.use(cors({ origin: true }));
 //   })
 // );
 
-require("./auth")(app);
-const passport = require("passport");
-require("./passport");
+require("./auth")(app)
+const passport = require("passport")
+require("./passport")
 
 //welcome
 app.get("/", (req, res) => {
-  res.send('Welcome to "Martini Shot"');
-});
+  res.send('Welcome to "Martini Shot"')
+})
 
-app.use(express.static("public"));
+app.use(express.static("public"))
 
 /**
  * @service GET all movies in database
@@ -76,14 +76,14 @@ app.get(
   (req, res) => {
     Movies.find()
       .then((movies) => {
-        res.json(movies);
+        res.json(movies)
       })
       .catch((err) => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
+        console.error(err)
+        res.status(500).send("Error: " + err)
+      })
   }
-);
+)
 
 /**
  * @service GET single movie
@@ -96,14 +96,14 @@ app.get(
   (req, res) => {
     Movies.findOne({ Title: req.params.title })
       .then((movie) => {
-        res.json(movie);
+        res.json(movie)
       })
       .catch((err) => {
-        console.error(err);
-        res.status(400).send("Error: " + err);
-      });
+        console.error(err)
+        res.status(400).send("Error: " + err)
+      })
   }
-);
+)
 
 /**
  * @service GET genre info
@@ -116,14 +116,14 @@ app.get(
   (req, res) => {
     Movies.findOne({ "Genre.Name": req.params.genreName })
       .then((movie) => {
-        res.json(movie.Genre);
+        res.json(movie.Genre)
       })
       .catch((err) => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
+        console.error(err)
+        res.status(500).send("Error: " + err)
+      })
   }
-);
+)
 
 /**
  * @service GET director info
@@ -136,14 +136,14 @@ app.get(
   (req, res) => {
     Movies.findOne({ "Director.Name": req.params.directorName })
       .then((movie) => {
-        res.json(movie.Director);
+        res.json(movie.Director)
       })
       .catch((err) => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
+        console.error(err)
+        res.status(500).send("Error: " + err)
+      })
   }
-);
+)
 
 /**
  * @service POST to the endpoint to register new user
@@ -162,15 +162,15 @@ app.post(
     check("Email", "Email does not appear to be valid").isEmail(),
   ],
   (req, res) => {
-    let errors = validationResult(req);
+    let errors = validationResult(req)
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({ errors: errors.array() })
     }
-    let hashedPassword = Users.hashPassword(req.body.Password);
+    let hashedPassword = Users.hashPassword(req.body.Password)
     Users.findOne({ Username: req.body.Username })
       .then((user) => {
         if (user) {
-          return res.status(400).send(req.body.Username + "already exists");
+          return res.status(400).send(req.body.Username + "already exists")
         } else {
           Users.create({
             Username: req.body.Username,
@@ -179,20 +179,20 @@ app.post(
             Birthday: req.body.Birthday,
           })
             .then((user) => {
-              res.status(201).json(user);
+              res.status(201).json(user)
             })
             .catch((error) => {
-              console.error(error);
-              res.status(500).send("Error: " + error);
-            });
+              console.error(error)
+              res.status(500).send("Error: " + error)
+            })
         }
       })
       .catch((error) => {
-        console.error(error);
-        res.status(500).send("Error: " + error);
-      });
+        console.error(error)
+        res.status(500).send("Error: " + error)
+      })
   }
-);
+)
 
 /**
  * @service GET all users
@@ -204,14 +204,14 @@ app.get(
   (req, res) => {
     Users.find()
       .then((users) => {
-        res.json(users);
+        res.json(users)
       })
       .catch((err) => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
+        console.error(err)
+        res.status(500).send("Error: " + err)
+      })
   }
-);
+)
 
 /**
  * @service PUT newly updated info of logged-in user
@@ -231,11 +231,11 @@ app.put(
   ],
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    let errors = validationResult(req);
+    let errors = validationResult(req)
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({ errors: errors.array() })
     }
-    let hashedPassword = Users.hashPassword(req.body.Password);
+    let hashedPassword = Users.hashPassword(req.body.Password)
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       {
@@ -249,15 +249,15 @@ app.put(
       { new: true },
       (err, updatedUser) => {
         if (err) {
-          console.error(err);
-          res.status(500).send("Error: " + err);
+          console.error(err)
+          res.status(500).send("Error: " + err)
         } else {
-          res.json(updatedUser);
+          res.json(updatedUser)
         }
       }
-    );
+    )
   }
-);
+)
 
 /**
  * @service POST specific movie to user's list of favorite movies
@@ -276,15 +276,15 @@ app.post(
       { new: true },
       (err, updatedUser) => {
         if (err) {
-          console.error(err);
-          res.status(500).send("Error: " + err);
+          console.error(err)
+          res.status(500).send("Error: " + err)
         } else {
-          res.json(updatedUser);
+          res.json(updatedUser)
         }
       }
-    );
+    )
   }
-);
+)
 
 /**
  * @service DELETE specific movie from user's list of favorite movies
@@ -303,15 +303,15 @@ app.delete(
       { new: true },
       (err, updatedUser) => {
         if (err) {
-          console.error(err);
-          res.status(500).send("Error: " + err);
+          console.error(err)
+          res.status(500).send("Error: " + err)
         } else {
-          res.json(updatedUser);
+          res.json(updatedUser)
         }
       }
-    );
+    )
   }
-);
+)
 
 /**
  * @service GET user info
@@ -323,14 +323,14 @@ app.get(
   (req, res) => {
     Users.findOne({ Username: req.params.Username })
       .then((users) => {
-        res.json(users);
+        res.json(users)
       })
       .catch((err) => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
+        console.error(err)
+        res.status(500).send("Error: " + err)
+      })
   }
-);
+)
 
 /**
  * @service DELETE user from database
@@ -343,25 +343,25 @@ app.delete(
     Users.findOneAndRemove({ Username: req.params.Username })
       .then((user) => {
         if (!user) {
-          res.status(400).send(req.params.Username + " was not found");
+          res.status(400).send(req.params.Username + " was not found")
         } else {
-          res.status(200).send(req.params.Username + " was deleted.");
+          res.status(200).send(req.params.Username + " was deleted.")
         }
       })
       .catch((err) => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
+        console.error(err)
+        res.status(500).send("Error: " + err)
+      })
   }
-);
+)
 
 //error message
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Oh No! What happened?!");
-});
+  console.error(err.stack)
+  res.status(500).send("Oh No! What happened?!")
+})
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080
 app.listen(port, "0.0.0.0", () => {
-  console.log("Listening on Port " + port);
-});
+  console.log("Listening on Port " + port)
+})
